@@ -112,16 +112,17 @@ def inference(image):
     data = tensor.permute(2, 0, 1).unsqueeze(0)
 
     out = model(data)
+
     idx = out.argmax()
+    (probs,), (idxs,) = torch.topk(out, 5)
 
     classes = load_names()
 
-    probs, idxs = torch.topk(out, 5)
-
-    idxs  = idxs[0]
-    probs = probs[0]
-
-    print([(classes[idxs[n]], probs[n].item()) for n in range(5)])
+    top = [
+        (classes[idxs[n]], probs[n].item())
+        for n in range(5)
+    ]
+    print(top)
 
     return classes[idx]
 
