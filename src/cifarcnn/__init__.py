@@ -13,7 +13,7 @@ from torch.utils.data import TensorDataset, DataLoader
 
 EPOCHS = 20
 BATCH_SIZE = 32
-N_CLASSES = 100
+N_CLASSES = 10
 
 device = torch.device('mps')
 
